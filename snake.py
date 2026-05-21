@@ -59,8 +59,7 @@ class button:
         mospos = pygame.mouse.get_pos()
         if self.brect.collidepoint(mospos[0],mospos[1]):
             if pygame.mouse.get_pressed()[0]:
-                global bpressfx
-                global gmstart
+                global bpressfx,gmstart
                 bpressfx.play()
                 gmstart = True
 
@@ -68,8 +67,7 @@ class button:
         mospos = pygame.mouse.get_pos()
         if self.brect.collidepoint(mospos[0],mospos[1]):
             if pygame.mouse.get_pressed()[0]:
-                global bpressfx
-                global scoreb
+                global bpressfx,scoreb
                 bpressfx.play()
                 scoreb = True
 
@@ -77,8 +75,7 @@ class button:
         mospos = pygame.mouse.get_pos()
         if self.brect.collidepoint(mospos[0],mospos[1]):
             if pygame.mouse.get_pressed()[0]:
-                global bpressfx
-                global scoreb
+                global bpressfx,scoreb
                 bpressfx.play()
                 scoreb = False
 
@@ -92,8 +89,7 @@ class button:
                 running = False
 
 def controls():
-    global snakedirx
-    global snakediry
+    global snakedirx,snakediry
 
     # movement
     keys = pygame.key.get_pressed()
