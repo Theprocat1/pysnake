@@ -1,5 +1,9 @@
 import pygame, random, time, json
 from datetime import datetime
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 # pygame setup
 pygame.init()
 pygame.font.init()
@@ -11,7 +15,10 @@ running = True
 gmstart = False
 scoreb = False
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 snakedirx = 0
 snakediry = -1
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
@@ -21,7 +28,10 @@ playerlength = 1
 applex = False
 
 gmfont = pygame.font.SysFont('Arial',50)
+<<<<<<< HEAD
 scfont = pygame.font.SysFont('Arial',35)
+=======
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 sfont = pygame.font.SysFont('Arial',20)
 title = gmfont.render("Simple Snake", False, "white")
 scoretitle = gmfont.render("Score", False, "white")
@@ -30,6 +40,7 @@ appleeaten = pygame.mixer.Sound("sfx/appleeat.wav")
 bpressfx = pygame.mixer.Sound("sfx/bpress.wav")
 gmoversfx = pygame.mixer.Sound("sfx/gameover.wav")
 
+<<<<<<< HEAD
 #sscore = snake score/ how many apples eaten
 #score = sscore plus the date
 #scores = list of scores
@@ -39,6 +50,10 @@ scores = []
 with open('save.json','r') as f:
         data = json.load(f)
         scores = data['scores']
+=======
+scores = {}
+scoreindex = 1
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 
 class button:
     def __init__(self,xpos,ypos,width,height,text):
@@ -92,7 +107,11 @@ class button:
                 bpressfx.play()
                 running = False
 
+<<<<<<< HEAD
 def controls():
+=======
+def pccontrols():
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
     global snakedirx
     global snakediry
 
@@ -128,10 +147,22 @@ def snakeonscreen():
 def game():
     screen.fill("black")
 
+<<<<<<< HEAD
     global running, applex, apple, applepos, player_pos, player_poses, playerlength,snakediry,snakedirx,sscore
 
     scoretext = sfont.render(str(sscore), False, "white")
     screen.blit(scoretext,(300,20))
+=======
+    global running
+    global applex
+    global apple
+    global applepos
+    global player_pos
+    global player_poses
+    global playerlength
+    global snakediry
+    global snakedirx
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
     #make apple appear in random places if it doesnt exist. if the random place is in the snake,try again until not.
     if applex != True:
         applepos = pygame.Vector2(random.randrange(0,600, 20),random.randrange(0,600, 20))
@@ -155,31 +186,55 @@ def game():
     pygame.draw.rect(screen,"white",pygame.Rect(player_pos.x,player_pos.y,20,20))
     pygame.draw.rect(screen,apple["color"],apple["position"])
 
+<<<<<<< HEAD
     controls()
+=======
+    pccontrols()
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 
     player_pos.y += 20 * snakediry
     player_pos.x += 20 * snakedirx
 
     #game over
     if player_pos in player_poses:
+<<<<<<< HEAD
         global gmoversfx, gmstart, scoreb
 
+=======
+        global gmoversfx
+        global gmstart
+        global scoreb
+        global scoreindex
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
         gmoversfx.play()
         time.sleep(2)
         date = datetime.now()
 
         score = {
+<<<<<<< HEAD
             "score": sscore,
+=======
+            "length": playerlength,
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
             "day" : date.day,
             "month" : date.month,
             "year" : date.year
         }
+<<<<<<< HEAD
         scores.append(score)
 
         player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
         player_poses = []
         playerlength = 1
         sscore = 0
+=======
+        scores.update({"score" + str(scoreindex) : score})
+        scoreindex += 1
+        print(scores)
+        player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+        player_poses = []
+        playerlength = 1
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
         snakedirx = 0
         snakediry = -1
         applex = False
@@ -193,7 +248,10 @@ def game():
         appleeaten.play()
         applex = False
         playerlength += 1
+<<<<<<< HEAD
         sscore += 1
+=======
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 
     snakeonscreen()
 
@@ -205,6 +263,7 @@ def scoreboard():
     pygame.draw.rect(screen,"black",pygame.Rect(110,55,390,490))
     screen.blit(scoretitle,(240,60))
     if scores:
+<<<<<<< HEAD
         scores.sort(key= lambda x: x['score'], reverse= True)
         scores = list({str(x): x for x in scores}.values()) #removes duplicates supposedly
         scores = scores[:10] #makes the list hold only 10 items
@@ -215,6 +274,14 @@ def scoreboard():
             screen.blit(scoretext,(200,sheight))
             i +=1
             sheight += 30
+=======
+        i = 0
+        for x in scores.items():
+            for obj in x:
+                scoretxt = sfont.render(str(obj),False,"white")
+                screen.blit(scoretxt,(100,120 + i))
+                i += 50
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 
 
     backbutton.draw()
@@ -238,9 +305,12 @@ while running:
             elif scoreb == True and gmstart == False:
                 backbutton.back()
         if event.type == pygame.QUIT:
+<<<<<<< HEAD
             data = {'scores' : scores}
             with open('save.json','w') as f:
                 json.dump(data,f,indent=2)
+=======
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
             running = False
 
     if gmstart == False and scoreb == False:
@@ -257,9 +327,12 @@ while running:
     pygame.display.flip() # show your work
     clock.tick(10)  # limits FPS
 
+<<<<<<< HEAD
 data = {'scores' : scores}
 with open('save.json','w') as f:
     json.dump(data,f,indent=2)
 
+=======
+>>>>>>> 6905b4f7e261d0a77cf433260e79fe31653239c3
 pygame.mixer.quit()
 pygame.quit()
