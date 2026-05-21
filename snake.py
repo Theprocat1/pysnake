@@ -4,7 +4,10 @@ from datetime import datetime
 pygame.init()
 pygame.font.init()
 screen = pygame.display.set_mode((600,600))
-pygame.display.set_caption("snake")
+pygame.display.set_caption("Python Snake")
+
+icon = pygame.image.load('snakeicon.ico')
+pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 pygame.mixer.init()
 running = True
@@ -22,7 +25,7 @@ applex = False
 gmfont = pygame.font.SysFont('Arial',50)
 scfont = pygame.font.SysFont('Arial',35)
 sfont = pygame.font.SysFont('Arial',20)
-title = gmfont.render("Simple Snake", False, "white")
+title = gmfont.render("Python Snake", False, "white")
 scoretitle = gmfont.render("Score", False, "white")
 
 appleeaten = pygame.mixer.Sound("sfx/appleeat.wav")
